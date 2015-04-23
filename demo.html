@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>cg-datetime-input Demo</title>
+    <link rel="import" href="../paper-input/paper-input-decorator.html">
+    <link rel="import" href="../paper-button/paper-button.html">
+    <link rel="import" href="../cg-datetime-picker/cg-date-input.html">
+    <!--<link rel="import" href="cg-datasource.html">-->
+    <link rel="import" href="cg-datasource-testdata.html">
+</head>
+
+
+<body unresolved fullbleed layout vertical center center-justified>
+
+<style>
+    .fntest {
+        margin:10px;
+    }
+    .data {
+        width: 600px;
+        height:300px;
+        overflow:auto;
+        border:1px solid black;
+        padding:10px;
+    }
+    .data_view {
+    }
+</style>
+<template id="sandbox" is="auto-binding" >
+    <!--<cg-datasource id="cg-datasource" type="rest"></cg-datasource>-->
+    <cg-datasource-rest id="cg-datasource"></cg-datasource-rest>
+    <!--<cg-datasource-testdata id="cg-datasource"></cg-datasource-testdata>-->
+    <div layout horizontal wrap>
+        <section layout vertical class="fntest">
+            <h2>getEventsInRange</h2>
+            <section layout horizontal wrap data-type="events" data-subtype="range" data-fn="getEventsInRange">
+                <paper-input-decorator label="From" floatingLabel error="{{_validationError}}" autoValidate>
+                    <cg-date-input required datetime="{{data.events.range.from}}"></cg-date-input>
+                </paper-input-decorator>
+                <paper-input-decorator label="To" floatingLabel error="{{_validationError}}" autoValidate>
+                    <cg-date-input required datetime="{{data.events.range.to}}"></cg-date-input>
+                </paper-input-decorator>
+                <paper-button on-tap="{{run}}">Run</paper-button>
+            </section>
+            <section>
+                <h1>DATA</h1>
+                <div class="data">
+                    <pre id="events-range-data" class="data_view"></pre>
+                </div>
+            </section>
+        </section>
+        <section layout vertical class="fntest">
+            <h2>getUserDocuments</h2>
+            <section layout horizontal wrap data-type="user" data-subtype="documents" data-fn="getUserDocuments">
+                <paper-input-decorator label="From" floatingLabel error="{{_validationError}}" autoValidate>
+                    <input type="text" is-core="true" value="{{data.user.documents.userId}}"></input>
+                </paper-input-decorator>
+                <paper-button on-tap="{{run}}">Run</paper-button>
+            </section>
+            <section>
+                <h1>DATA</h1>
+                <div class="data">
+                    <pre id="user-documents-data" class="data_view"></pre>
+                </div>
+            </section>
+        </section>
+        <section layout vertical class="fntest">
+            <h2>getUserEventOverview</h2>
+            <section layout horizontal wrap data-type="user" data-subtype="eventsOverview" data-fn="getUserEventOverview">
+                <paper-input-decorator label="From" floatingLabel error="{{_validationError}}" autoValidate>
+                    <input type="text" is-core="true" value="{{data.user.eventsOverview.userId}}"></input>
+                </paper-input-decorator>
+                <paper-button on-tap="{{run}}">Run</paper-button>
+            </section>
+            <section>
+                <h1>DATA</h1>
+                <div class="data">
+                    <pre id="user-eventsOverview-data" class="data_view"></pre>
+                </div>
+            </section>
+        </section>
+        <section layout vertical class="fntest">
+            <h2>getUserYearAppointments</h2>
+            <section layout horizontal wrap data-type="user" data-subtype="yearAppointments" data-fn="getUserYearAppointments">
+                <paper-input-decorator label="From" floatingLabel error="{{_validationError}}" autoValidate>
+                    <input type="text" is-core="true" value="{{data.user.yearAppointments.userId}}"></input>
+                </paper-input-decorator>
+                <paper-button on-tap="{{run}}">Run</paper-button>
+            </section>
+            <section>
+                <h1>DATA</h1>
+                <div class="data">
+                    <pre id="user-yearAppointments-data" class="data_view"></pre>
+                </div>
+            </section>
+        </section>
+        <section layout vertical class="fntest">
+            <h2>getUserAppointmentsOverview</h2>
+            <section layout horizontal wrap data-type="user" data-subtype="appointmentsOverview" data-fn="getUserAppointmentsOverview">
+                <paper-input-decorator label="From" floatingLabel error="{{_validationError}}" autoValidate>
+                    <input type="text" is-core="true" value="{{data.user.appointmentsOverview.userId}}"></input>
+                </paper-input-decorator>
+                <paper-button on-tap="{{run}}">Run</paper-button>
+            </section>
+            <section>
+                <h1>DATA</h1>
+                <div class="data">
+                    <pre id="user-appointmentsOverview-data" class="data_view"></pre>
+                </div>
+            </section>
+        </section>
+        <section layout vertical class="fntest">
+            <h2>getUserAppointmentsCategories</h2>
+            <section layout horizontal wrap data-type="user" data-subtype="appointmentsCategories" data-fn="getUserAppointmentsCategories">
+                <paper-input-decorator label="From" floatingLabel error="{{_validationError}}" autoValidate>
+                    <input type="text" is-core="true" value="{{data.user.appointmentsCategories.userId}}"></input>
+                </paper-input-decorator>
+                <paper-button on-tap="{{run}}">Run</paper-button>
+            </section>
+            <section>
+                <h1>DATA</h1>
+                <div class="data">
+                    <pre id="user-appointmentsCategories-data" class="data_view"></pre>
+                </div>
+            </section>
+        </section>
+        <section layout vertical class="fntest">
+            <h2>getColors</h2>
+            <section layout horizontal wrap data-type="user" data-subtype="colors" data-fn="getColors">
+                <paper-button on-tap="{{run}}">Run</paper-button>
+            </section>
+            <section>
+                <h1>DATA</h1>
+                <div class="data">
+                    <pre id="user-colors-data" class="data_view"></pre>
+                </div>
+            </section>
+        </section>
+        <section layout vertical class="fntest">
+            <h2>getCategories</h2>
+            <section layout horizontal wrap data-type="user" data-subtype="categories" data-fn="getCategories">
+                <paper-button on-tap="{{run}}">Run</paper-button>
+            </section>
+            <section>
+                <h1>DATA</h1>
+                <div class="data">
+                    <pre id="user-categories-data" class="data_view"></pre>
+                </div>
+            </section>
+        </section>
+    </div>
+</template>
+
+<script>
+    window.addEventListener('template-bound', function(){
+        var sandbox = document.getElementById('sandbox');
+        var ds = document.getElementById('cg-datasource');
+
+
+        sandbox.data = {
+            events:{
+                range:{
+                    from: "2015-03-15T09:00:00.000-0500",
+                    to: "2015-03-17T09:00:00.000-0500"
+                }
+            },
+            user:{
+                documents:{
+                    userId: "userId"
+                },
+                eventsOverview:{
+                    userId: "userId"
+                },
+                yearAppointments:{
+                    userId: "userId"
+                },
+                appointmentsOverview:{
+                    userId: "userId"
+                },
+                appointmentsCategories:{
+                    userId: "userId"
+                },
+                colors:null,
+                categories:null
+            }
+        };
+
+        sandbox.run = function(e){
+            var data = e.currentTarget.parentElement.dataset;
+            var params = sandbox.data[data.type][data.subtype];
+            var callback = function(response){
+                document.getElementById(data.type + "-" + data.subtype + "-data").innerHTML = JSON.stringify(response, null, '\t');
+            }.bind(this);
+            ds[data.fn](callback, params);
+        };
+    });
+</script>
+
+</body>
+</html>
