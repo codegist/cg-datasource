@@ -1,5 +1,5 @@
-<link href="../../bower_components/polymer/polymer.html" rel="import">
-<link href="../../bower_components/cg-datasource/cg-datasource-base.html" rel="import">
+<link href="../polymer/polymer.html" rel="import">
+<link href="cg-datasource-base.html" rel="import">
 
 <polymer-element name="cg-datasource-testdata" extends="cg-datasource-base">
     <script>
@@ -331,18 +331,13 @@
             };
 
             Polymer({
-                _mapping:null,
-                created:function(){
-                    this._mapping = {
+                getProvidersMap:function(){
+                    return {
                         'cg-agenda-events-in-range':this.getEventsInRange,
                         'cg-agenda-editor-color-list':this.getColors,
                         'cg-agenda-editor-tag-list':this.getCategories,
                         'cg-agenda-editor-document-list':this.getUserDocuments
                     };
-                    this.super();
-                },
-                getProvider:function(type){
-                    return this._mapping[type];
                 },
                 getEventsInRange:function(callback, params){
                     var range = {};
