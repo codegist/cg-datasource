@@ -6,6 +6,7 @@
         Polymer({
             mapping:null,
             created:function(){
+                this.super();
                 this.mapping = this.getProvidersMap();
                 Polymer.addEventListener(document, "data-request", this._onDataRequest.bind(this));
             },
