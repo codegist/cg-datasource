@@ -8,7 +8,7 @@
             created:function(){
                 this.super();
                 this.mapping = this.getProvidersMap();
-                Polymer.addEventListener(document, "data-request", this._onDataRequest.bind(this));
+                Polymer.addEventListener(document, "cg-data-request", this._onDataRequest.bind(this));
             },
             getProvidersMap:function(){
                 throw "getProvidersMap to implements"
@@ -19,7 +19,7 @@
                 if(!dataProvider) {
                     console.warn(request.type + " data provider not found.");
                 }else{
-                    dataProvider.call(this, request.callback, request.params);
+                    dataProvider.call(this, request);
                 }
             }
         });
