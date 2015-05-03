@@ -17,7 +17,7 @@
                 var request = e.detail;
                 var dataProvider = this.mapping[request.type];
                 if(!dataProvider) {
-                    console.warn(request.type + " data provider not found.");
+                    throw request.type + " data provider not found.";
                 }else{
                     dataProvider.call(this, request);
                 }
