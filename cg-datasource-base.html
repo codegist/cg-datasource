@@ -1,0 +1,27 @@
+<link href="../polymer/polymer.html" rel="import">
+<link href="../cg-base/cg-base.html" rel="import">
+
+<polymer-element name="cg-datasource-base" extends="cg-base">
+    <script>
+        Polymer({
+            mapping:null,
+            created:function(){
+                this.super();
+                this.mapping = this.getProvidersMap();
+                Polymer.addEventListener(document, "cg-data-request", this._onDataRequest.bind(this));
+            },
+            getProvidersMap:function(){
+                throw "getProvidersMap to implements"
+            },
+            _onDataRequest:function(e){
+                var request = e.detail;
+                var dataProvider = this.mapping[request.type];
+                if(!dataProvider) {
+                    throw request.type + " data provider not found.";
+                }else{
+                    dataProvider.call(this, request);
+                }
+            }
+        });
+    </script>
+</polymer-element>
