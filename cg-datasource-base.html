@@ -1,7 +1,11 @@
 <link href="../polymer/polymer.html" rel="import">
 <link href="../cg-base/cg-base.html" rel="import">
+<link href="../cg-base/cg-app-globals.html" rel="import">
 
 <polymer-element name="cg-datasource-base" extends="cg-base">
+    <template>
+        <cg-app-globals id="globals"></cg-app-globals>
+    </template>
     <script>
         Polymer({
             mapping:null,
