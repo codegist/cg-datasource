@@ -1,0 +1,28 @@
+<link href="../polymer/polymer.html" rel="import">
+<link href="../cg-base/cg-base-behavior.html" rel="import">
+<script>
+    var DataSourceBaseBehaviorImpl = {
+        is: "cg-datasource-base-behavior",
+        properties: {
+            providersMap: {
+                type: Object
+            }
+        },
+        created: function () {
+            document.addEventListener("cg-data-request", this._onDataRequest.bind(this));
+        },
+        getProvidersMap: function () {
+            throw "getProvidersMap to implements"
+        },
+        _onDataRequest: function (e) {
+            var request = e.detail;
+            var dataProvider = this.providersMap[request.type];
+            if (!dataProvider) {
+                throw request.type + " data provider not found.";
+            } else {
+                dataProvider.call(this, request);
+            }
+        }
+    };
+    CG.DataSourceBaseBehavior = [DataSourceBaseBehaviorImpl, CG.BaseBehavior];
+</script>
