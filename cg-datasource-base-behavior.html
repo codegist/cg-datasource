@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../cg-base/cg-base-behavior.html">
+<link rel="import" href="../cg-behaviors/cg-document-event-behavior.html">
 <script>
     var DataSourceBaseBehaviorImpl = {
         is: "cg-datasource-base-behavior",
@@ -9,14 +9,11 @@
             }
         },
         created: function () {
-            document.addEventListener("cg-data-request", this._onDataRequest.bind(this));
+            this.listensTo("cg-data-request", this._onDataRequest);
         },
-        getProvidersMap: function () {
-            throw "getProvidersMap to implements"
-        },
-        _onDataRequest: function (e) {
-            var request = e.detail;
-            var dataProvider = this.providersMap[request.type];
+        _onDataRequest: function (type, event, e) {
+            var request = event.params;
+            var dataProvider = this.providersMap[type];
             if (!dataProvider) {
                 throw request.type + " data provider not found.";
             } else {
@@ -24,5 +21,5 @@
             }
         }
     };
-    CG.DataSourceBaseBehavior = [DataSourceBaseBehaviorImpl, CG.BaseBehavior];
+    CG.DataSourceBaseBehavior = [DataSourceBaseBehaviorImpl, CG.DocumentEventBehavior];
 </script>
